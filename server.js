@@ -23,7 +23,7 @@ var path = require('path');
 // config files
 var configDB = require('./config/db');
 
-var latestverion = {number: "0.0.5.0"};
+var latestverion = {number: "0.1.0.0"};
 var latestverion = {number: latestverion.number, download: path.join(__dirname, '../public/download', latestverion.number + '.zip')}
 
 // connect to our mongoDB database
@@ -37,7 +37,11 @@ app.get('/background.png', function(req, res) {
 });
 
 app.get('/' + latestverion.number + '.zip', function(req, res) {
-    res.sendfile(path.join(__dirname + '/public/download/' + latestverion.number + '.zip'));
+    res.download(path.join(__dirname + '/public/download/' + latestverion.number + '.zip'), latestverion.number + '.zip');
+});
+
+app.get('/launcher', function(req, res) {
+    res.download(path.join(__dirname + '/public/download/Banshee Launcher.exe'));
 });
 
 app.use(morgan('dev'));
