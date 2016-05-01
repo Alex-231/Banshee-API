@@ -21,8 +21,6 @@ var http = require('http');
 // config files
 var configDB = require('./config/db');
 
-// set our port
-var port = app.env.OPENSHIFT_NODEJS_PORT;
 
 // connect to our mongoDB database
 // (uncomment after you enter in your own credentials in config/db.js)
@@ -67,9 +65,6 @@ require('./app/routes')(app, passport); // configure our routes
 var server_port = process.env.OPENSHIFT_NODEJS_PORT || 8080
 var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1'
 
-server.listen(server_port, server_ip_address, function () {
-console.log( "Listening on " + server_ip_address + ", server_port " + port )
+app.listen(server_port, server_ip_address, function () {
+console.log( "Listening on " + server_ip_address + ", server_port " + server_port )
 });
-
-// shoutout to the user
-console.log('Magic happens on port ' + port);
