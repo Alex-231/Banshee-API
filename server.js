@@ -21,7 +21,7 @@ var session      = require('express-session');
 var configDB = require('./config/db');
 
 // set our port
-var port = process.env.PORT || 8080;
+var port = app.env.OPENSHIFT_NODEJS_PORT;
 
 // connect to our mongoDB database
 // (uncomment after you enter in your own credentials in config/db.js)
@@ -62,7 +62,7 @@ require('./app/routes')(app, passport); // configure our routes
 
 // start app ===============================================
 // startup our app at http://localhost:8080
-app.listen(process.env.OPENSHIFT_NODEJS_PORT);
+app.listen(port);
 
 // shoutout to the user
 console.log('Magic happens on port ' + port);
