@@ -14,6 +14,7 @@ var flash    = require('connect-flash');
 var morgan       = require('morgan');
 var cookieParser = require('cookie-parser');
 var session      = require('express-session');
+var http = require('http');
 
 // configuration ===========================================
 
@@ -62,7 +63,15 @@ require('./app/routes')(app, passport); // configure our routes
 
 // start app ===============================================
 // startup our app at http://localhost:8080
-app.listen(port);
+
+app.set('port', process.env.OPENSHIFT_NODEJS_PORT || process.env.PORT || 3002);
+app.set('ip', process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1");
+
+
+http.createServer(app).listen(app.get('port') ,app.get('ip'), function () {
+    console.log("✔ Express server listening at %s:%d ", app.get('ip'),app.get('port'));
+    server();
+});
 
 // shoutout to the user
 console.log('Magic happens on port ' + port);
