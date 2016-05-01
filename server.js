@@ -16,11 +16,15 @@ var cookieParser = require('cookie-parser');
 var session      = require('express-session');
 var http = require('http');
 
+var path = require('path');
+
 // configuration ===========================================
 
 // config files
 var configDB = require('./config/db');
 
+var latestverion = {number: "0.0.5.0"};
+var latestverion = {number: latestverion.number, download: path.join(__dirname, '../public/download', latestverion.number + '.zip')}
 
 // connect to our mongoDB database
 // (uncomment after you enter in your own credentials in config/db.js)
@@ -28,6 +32,13 @@ mongoose.connect(configDB.url);
 
 require('./config/passport')(passport);
 
+app.get('/background.png', function(req, res) {
+    res.sendfile(path.join(__dirname + '/public/img/background.png'));
+});
+
+app.get('/' + latestverion.number + '.zip', function(req, res) {
+    res.sendfile(path.join(__dirname + '/public/download/' + latestverion.number + '.zip'));
+});
 
 app.use(morgan('dev'));
 app.use(cookieParser());
@@ -57,7 +68,7 @@ app.use(methodOverride('X-HTTP-Method-Override'));
 app.use(express.static(__dirname + '/public'));
 
 // routes ==================================================
-require('./app/routes')(app, passport); // configure our routes
+require('./app/routes')(app, passport, latestverion); // configure our routes
 
 // start app ===============================================
 // startup our app at http://localhost:8080

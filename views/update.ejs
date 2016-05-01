@@ -1,0 +1,27 @@
+<!-- views/index.ejs -->
+<!doctype html>
+<html>
+<head>
+    <title>Banshee Authentication</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
+    <style>
+        body        { padding-top:120px; }
+    </style>
+</head>
+<body style="background-image:url(http://mcauth-alex231.rhcloud.com/background.png);background-size:100%;">
+  <div class="container" style="
+  width: 500px;
+margin-left: 177px;
+  ">
+
+    <div class="jumbotron text-center" style="opacity:0.95;">
+        <h1>An update is available.</h1>
+        <h3><%= number %></h3>
+
+        <a href="/downloadupdate" class="btn btl-lg btn-primary">Download and Install</a>
+    </div>
+
+</div>
+</body>
+</html>

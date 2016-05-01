@@ -1,6 +1,8 @@
 // app/routes.js
 
-   module.exports = function(app, passport) {
+   module.exports = function(app, passport, latestverion) {
+
+
 
      // server routes ===========================================================
      // handle things like api calls
@@ -12,7 +14,24 @@
      // frontend routes =========================================================
      // route to handle all angular requests
      app.get('/', function(req, res) {
-         res.render('index.ejs'); // load our public/index.html file
+         res.render('index.ejs', {
+           number : latestverion.number,
+           download : latestverion.download,
+         }); // load our public/index.html file
+     });
+
+     app.get('/update', function(req, res) {
+         res.render('update.ejs', {
+           number : latestverion.number,
+           download : latestverion.download,
+         }); // load our public/index.html file
+     });
+
+     app.get('/version', function(req, res) {
+         res.render('version.ejs', {
+           number : latestverion.number,
+           download : latestverion.download
+         }); // load our public/index.html file
      });
 
      app.get('/login', function(req, res) {
