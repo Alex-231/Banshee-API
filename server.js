@@ -23,7 +23,7 @@ var path = require('path');
 // config files
 var configDB = require('./config/db');
 
-var latestverion = {number: "0.1.1.3"};
+var latestverion = {number: "0.1.1.4"};
 var latestverion = {number: latestverion.number, download: path.join(__dirname, '../public/download', latestverion.number + '.zip')}
 
 // connect to our mongoDB database
