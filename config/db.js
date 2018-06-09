@@ -1,4 +1,4 @@
 // config/db.js
     module.exports = {
-        url : 'mongodb://testinguser:cake@ds047935.mlab.com:47935/themescape'
+        url : 'mongodb://banshee:banshee1@ds253840.mlab.com:53840/bansheedb'
     }
