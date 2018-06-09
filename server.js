@@ -23,7 +23,7 @@ var path = require('path');
 // config files
 var configDB = require('./config/db');
 
-var latestverion = {number: "0.1.1.4"};
+var latestverion = {number: "0.1.1.5"};
 var latestverion = {number: latestverion.number, download: path.join(__dirname, '../public/download', latestverion.number + '.zip')}
 
 // connect to our mongoDB database
@@ -77,9 +77,8 @@ require('./app/routes')(app, passport, latestverion); // configure our routes
 // start app ===============================================
 // startup our app at http://localhost:8080
 
-var server_port = process.env.OPENSHIFT_NODEJS_PORT || 8080
-var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1'
+var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
+    ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0'
 
-app.listen(server_port, server_ip_address, function () {
-console.log( "Listening on " + server_ip_address + ", server_port " + server_port )
-});
+app.listen(port, ip);
+console.log("server started on " + ip + ":" + port);
