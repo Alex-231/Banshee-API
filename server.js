@@ -46,7 +46,7 @@ app.get('/launcher', function(req, res) {
 
 app.use(morgan('dev'));
 app.use(cookieParser());
-app.use(bodyParser());
+//app.use(bodyParser.urlencoded());
 
 app.set('view engine', 'ejs');
 
